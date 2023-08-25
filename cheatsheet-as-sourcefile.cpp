@@ -1,19 +1,21 @@
-<a href="https://github.com/mortennobel/cpp-cheatsheet"><img align="right" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+// This is a source version of the cpp cheatsheet available here. Note that this does not compile but may have better
+// color-highlight than the markdown version in an editor.
+//
+// Github version available here: https://github.com/mortennobel/cpp-cheatsheet
 
-# C++ QUICK REFERENCE / C++ CHEATSHEET
-Based on <a href="http://www.pa.msu.edu/~duxbury/courses/phy480/Cpp_refcard.pdf">Phillip M. Duxbury's C++ Cheatsheet</a> and edited by Morten Nobel-Jørgensen.
-The cheatsheet focus is both on the language as well as common classes from the standard library.
-C++11 additions is inspired by <a href="https://isocpp.org/blog/2012/12/c11-a-cheat-sheet-alex-sinyakov">ISOCPP.org C++11 Cheatsheet</a>).
+// # C++ QUICK REFERENCE / C++ CHEATSHEET
+// Based on <a href="http://www.pa.msu.edu/~duxbury/courses/phy480/Cpp_refcard.pdf">Phillip M. Duxbury's C++ Cheatsheet</a> and edited by Morten Nobel-Jørgensen.
+// The cheatsheet focus is both on the language as well as common classes from the standard library.
+// C++11 additions is inspired by <a href="https://isocpp.org/blog/2012/12/c11-a-cheat-sheet-alex-sinyakov">ISOCPP.org C++11 Cheatsheet</a>).
+//
+// The goal is to give a concise overview of basic, modern C++ (C++14).
+//
+// The document is hosted on https://github.com/mortennobel/cpp-cheatsheet. Any comments and feedback are appreciated.
 
-The goal is to give a concise overview of basic, modern C++ (C++14).
+// ## Preprocessor
 
-The document is hosted on https://github.com/mortennobel/cpp-cheatsheet. Any comments and feedback are appreciated.
-
-## Preprocessor
-
-```cpp
-                            // Comment to end of line
-                            /* Multi-line comment */
+// Comment to end of line
+/* Multi-line comment */
 #include  <stdio.h>         // Insert standard header file
 #include "myfile.h"         // Insert file in current directory
 #define X some text         // Replace X with some text
@@ -24,11 +26,10 @@ The document is hosted on https://github.com/mortennobel/cpp-cheatsheet. Any com
 #if defined(X)              // Conditional compilation (#ifdef X)
 #else                       // Optional (#ifndef X or #if !defined(X))
 #endif                      // Required after #if, #ifdef
-```
 
-## Literals
 
-```cpp
+// ## Literals
+
 255, 0377, 0xff             // Integers (decimal, octal, hex)
 2147483647L, 0x7fffffffl    // Long (32-bit) integers
 123.0, 1.23e2               // double (real) numbers
@@ -38,11 +39,9 @@ The document is hosted on https://github.com/mortennobel/cpp-cheatsheet. Any com
 "hello" "world"             // Concatenated strings
 true, false                 // bool constants 1 and 0
 nullptr                     // Pointer type with the address of 0
-```
 
-## Declarations
+// ## Declarations
 
-```cpp
 int x;                      // Declare x to be an integer (value undefined)
 int x=255;                  // Declare and initialize x to 255
 short s; long l;            // Usually 16 or 32 bit integer (int may be either)
@@ -50,7 +49,7 @@ char c='a';                 // Usually 8 bit character
 unsigned char u=255;
 signed char s=-1;           // char might be either
 unsigned long x =
-  0xffffffffL;              // short, int, long are signed
+        0xffffffffL;              // short, int, long are signed
 float f; double d;          // Single or double precision real (never unsigned)
 bool b=true;                // true or false, may also use int (1 or 0)
 int a, b, c;                // Multiple declarations
@@ -82,22 +81,21 @@ uint16_t,int32_t,uint32_t,
 int64_t,uint64_t            // Fixed length standard types
 auto it = m.begin();        // Declares it to the result of m.begin()
 auto const param = config["param"];
-                            // Declares it to the const result
+// Declares it to the const result
 auto& s = singleton::instance();
-                            // Declares it to a reference of the result
-```
+// Declares it to a reference of the result
 
-## STORAGE Classes
 
-```cpp
+// ## STORAGE Classes
+
 int x;                      // Auto (memory exists only while in scope)
 static int x;               // Global lifetime even if local scope
 extern int x;               // Information only, declared elsewhere
-```
 
-## Statements
 
-```cpp
+// ## Statements
+
+
 x=y;                        // Every expression is a statement
 int x;                      // Declarations are statements
 ;                           // Empty statement
@@ -113,14 +111,14 @@ while (x) a;                // Repeat 0 or more times while x is true
 for (x; y; z) a;            // Equivalent to: x; while(y) {a; z;}
 
 for (x : y) a;              // Range-based for loop e.g.
-                            // for (auto& x in someList) x.y();
+// for (auto& x in someList) x.y();
 
 do a; while (x);            // Equivalent to: a; while(x) a;
 
 switch (x) {                // x must be int
-    case X1: a;             // If x == X1 (must be a const), jump here
-    case X2: b;             // Else if x == X2, jump here
-    default: c;             // Else jump here (optional)
+case X1: a;             // If x == X1 (must be a const), jump here
+case X2: b;             // Else if x == X2, jump here
+default: c;             // Else jump here (optional)
 }
 break;                      // Jump out of while, do, or for loop, or switch
 continue;                   // Jump to bottom of while, do, or for loop
@@ -128,11 +126,9 @@ return x;                   // Return x from function to caller
 try { a; }
 catch (T t) { b; }          // If a throws a T, then jump here
 catch (...) { c; }          // If a throws something else, jump here
-```
 
-## Functions
+// ## Functions
 
-```cpp
 int f(int x, int y);        // f is a function taking 2 ints and returning int
 void f();                   // f is a procedure taking no arguments
 void f(int a=0);            // f() is equivalent to f(0)
@@ -143,34 +139,31 @@ T operator+(T x, T y);      // a+b (if type T) calls operator+(a, b)
 T operator-(T x);           // -a calls function operator-(a)
 T operator++(int);          // postfix ++ or -- (parameter ignored)
 extern "C" {void f();}      // f() was compiled in C
-```
 
-Function parameters and return values may be of any type. A function must either be declared or defined before
-it is used. It may be declared first and defined later. Every program consists of a set of a set of global variable
-declarations and a set of function definitions (possibly in separate files), one of which must be:
+// Function parameters and return values may be of any type. A function must either be declared or defined before
+// it is used. It may be declared first and defined later. Every program consists of a set of a set of global variable
+// declarations and a set of function definitions (possibly in separate files), one of which must be:
 
-```cpp
+
 int main()  { statements... }     // or
 int main(int argc, char* argv[]) { statements... }
-```
 
-`argv` is an array of `argc` strings from the command line.
-By convention, `main` returns status `0` if successful, `1` or higher for errors.
 
-Functions with different parameters may have the same name (overloading). Operators except `::` `.` `.*` `?:` may be overloaded.
-Precedence order is not affected. New operators may not be created.
+// `argv` is an array of `argc` strings from the command line.
+// By convention, `main` returns status `0` if successful, `1` or higher for errors.
+//
+// Functions with different parameters may have the same name (overloading). Operators except `::` `.` `.*` `?:` may be overloaded.
+// Precedence order is not affected. New operators may not be created.
 
-## Expressions
+// ## Expressions
 
-Operators are grouped by precedence, highest first. Unary operators and assignment evaluate right to left. All
-others are left to right. Precedence does not affect order of evaluation, which is undefined. There are no run time
-checks for arrays out of bounds, invalid pointers, etc.
+// Operators are grouped by precedence, highest first. Unary operators and assignment evaluate right to left. All
+// others are left to right. Precedence does not affect order of evaluation, which is undefined. There are no run time
+// checks for arrays out of bounds, invalid pointers, etc.
 
-```cpp
 T::X                        // Name X defined in class T
 N::X                        // Name X defined in namespace N
 ::X                         // Global name X
-
 t.x                         // Member x of struct or class t
 p-> x                       // Member x of struct or class pointed to by p
 a[i]                        // i'th element of array a
@@ -226,11 +219,9 @@ x += y                      // x = x + y, also -= *= /= <<= >>= &= |= ^=
 x ? y : z                   // y if x is true (nonzero), else z
 throw x                     // Throw exception, aborts if not caught
 x , y                       // evaluates x and y, returns y (seldom used)
-```
 
-## Classes
+// ## Classes
 
-```cpp
 class T {                   // A new type
 private:                    // Section accessible only to T's member functions
 protected:                  // Also accessible to classes derived from T
@@ -265,86 +256,78 @@ T t;                        // Create object t implicit call constructor
 t.f();                      // Call method f on object t
 
 struct T {                  // Equivalent to: class T { public:
-  virtual void i();         // May be overridden at run time by derived class
-  virtual void g()=0; };    // Must be overridden (pure virtual)
+    virtual void i();         // May be overridden at run time by derived class
+    virtual void g()=0; };    // Must be overridden (pure virtual)
 class U: public T {         // Derived class U inherits all members of base T
-  public:
-  void g(int) override; };  // Override method g
+public:
+    void g(int) override; };  // Override method g
 class V: private T {};      // Inherited members of T become private
 class W: public T, public U {};
-                            // Multiple inheritance
+// Multiple inheritance
 class X: public virtual T {};
-                            // Classes derived from X have base T directly
-```
+// Classes derived from X have base T directly
 
-All classes have a default copy constructor, assignment operator, and destructor, which perform the
-corresponding operations on each data member and each base class as shown above. There is also a default no-argument
-constructor (required to create arrays) if the class has no constructors. Constructors, assignment, and
-destructors do not inherit.
+// All classes have a default copy constructor, assignment operator, and destructor, which perform the
+// corresponding operations on each data member and each base class as shown above. There is also a default no-argument
+// constructor (required to create arrays) if the class has no constructors. Constructors, assignment, and
+// destructors do not inherit.
 
-## Templates
+// ## Templates
 
-```cpp
 template <class T> T f(T t);// Overload f for all types
 template <class T> class X {// Class with type parameter T
-  X(T t); };                // A constructor
+    X(T t); };                // A constructor
 template <class T> X<T>::X(T t) {}
-                            // Definition of constructor
+// Definition of constructor
 X<int> x(3);                // An object of type "X of int"
 template <class T, class U=T, int n=0>
-                            // Template with default parameters
-```
+// Template with default parameters
 
-## Namespaces
+// ## Namespaces
 
-```cpp
 namespace N {class T {};}   // Hide name T
 N::T t;                     // Use name T in namespace N
 using namespace N;          // Make T visible without N::
-```
 
-## `memory` (dynamic memory management)
+// ## `memory` (dynamic memory management)
 
-```cpp
 #include <memory>           // Include memory (std namespace)
 shared_ptr<int> x;          // Empty shared_ptr to a integer on heap. Uses reference counting for cleaning up objects.
 x = make_shared<int>(12);   // Allocate value 12 on heap
 shared_ptr<int> y = x;      // Copy shared_ptr, implicit changes reference count to 2.
 cout << *y;                 // Dereference y to print '12'
 if (y.get() == x.get()) {   // Raw pointers (here x == y)
-    cout << "Same";  
-}  
+  cout << "Same";
+}
 y.reset();                  // Eliminate one owner of object
-if (y.get() != x.get()) { 
-    cout << "Different";  
-}  
+if (y.get() != x.get()) {
+  cout << "Different";
+}
 if (y == nullptr) {         // Can compare against nullptr (here returns true)
-    cout << "Empty";  
-}  
+  cout << "Empty";
+}
 y = make_shared<int>(15);   // Assign new value
 cout << *y;                 // Dereference x to print '15'
 cout << *x;                 // Dereference x to print '12'
 weak_ptr<int> w;            // Create empty weak pointer
 w = y;                      // w has weak reference to y.
 if (shared_ptr<int> s = w.lock()) { // Has to be copied into a shared_ptr before usage
-    cout << *s;
+  cout << *s;
 }
 unique_ptr<int> z;          // Create empty unique pointers
 unique_ptr<int> q;
 z = make_unique<int>(16);   // Allocate int (16) on heap. Only one reference allowed.
 q = move(z);                // Move reference from z to q.
 if (z == nullptr){
-    cout << "Z null";
+  cout << "Z null";
 }
 cout << *q;
 shared_ptr<B> r;
 r = dynamic_pointer_cast<B>(t); // Converts t to a shared_ptr<B>
 
-```
 
-## `math.h`, `cmath` (floating point math)
+// ## `math.h`, `cmath` (floating point math)
 
-```cpp
 #include <cmath>            // Include cmath (std namespace)
 sin(x); cos(x); tan(x);     // Trig functions, x (double) is in radians
 asin(x); acos(x); atan(x);  // Inverses
@@ -354,19 +337,15 @@ exp(x); log(x); log10(x);   // e to the x, log base e, log base 10
 pow(x, y); sqrt(x);         // x to the y, square root
 ceil(x); floor(x);          // Round up or down (as a double)
 fabs(x); fmod(x, y);        // Absolute value, x mod y
-```
 
-## `assert.h`, `cassert` (Debugging Aid)
+// ## `assert.h`, `cassert` (Debugging Aid)
 
-```cpp
 #include <cassert>        // Include iostream (std namespace)
-assert(e);                // If e is false, print message and abort
+        assert(e);                // If e is false, print message and abort
 #define NDEBUG            // (before #include <assert.h>), turn off assert
-```
 
-## `iostream.h`, `iostream` (Replaces `stdio.h`)
+// ## `iostream.h`, `iostream` (Replaces `stdio.h`)
 
-```cpp
 #include <iostream>         // Include iostream (std namespace)
 cin >> x >> y;              // Read words x and y (any type) from stdin
 cout << "x=" << 3 << endl;  // Write line to stdout
@@ -375,28 +354,23 @@ c = cin.get();              // c = getchar();
 cin.get(c);                 // Read char
 cin.getline(s, n, '\n');    // Read line into char s[n] to '\n' (default)
 if (cin)                    // Good state (not EOF)?
-                            // To read/write any type T:
+// To read/write any type T:
 istream& operator>>(istream& i, T& x) {i >> ...; x=...; return i;}
 ostream& operator<<(ostream& o, const T& x) {return o << ...;}
-```
 
-## `fstream.h`, `fstream` (File I/O works like `cin`, `cout` as above)
+// ## `fstream.h`, `fstream` (File I/O works like `cin`, `cout` as above)
 
-
-```cpp
 #include <fstream>          // Include filestream (std namespace)
 ifstream f1("filename");    // Open text file for reading
 if (f1)                     // Test if open and input available
-    f1 >> x;                // Read object from file
+f1 >> x;                    // Read object from file
 f1.get(s);                  // Read char or line
 f1.getline(s, n);           // Read line into string s[n]
 ofstream f2("filename");    // Open file for writing
 if (f2) f2 << x;            // Write to file
-```
 
-## `string` (Variable sized character array)
+// ## `string` (Variable sized character array)
 
-```cpp
 #include <string>         // Include string (std namespace)
 string s1, s2="hello";    // Create strings
 s1.size(), s2.size();     // Number of characters: 0, 5
@@ -407,11 +381,9 @@ s1.substr(m, n);          // Substring of size n starting at s1[m]
 s1.c_str();               // Convert to const char*
 s1 = to_string(12.05);    // Converts number to string
 getline(cin, s);          // Read line ending in '\n'
-```
 
-## `vector` (Variable sized array/stack with built in memory allocation)
+// ## `vector` (Variable sized array/stack with built in memory allocation)
 
-```cpp
 #include <vector>         // Include vector (std namespace)
 vector<int> a(10);        // a[0]..a[9] are int (default size is 0)
 vector<int> b{1,2,3};        // Create vector with values 1,2,3
@@ -423,109 +395,93 @@ a.front();                // a[0];
 a[20]=1;                  // Crash: not bounds checked
 a.at(20)=1;               // Like a[20] but throws out_of_range()
 for (int& p : a)
-  p=0;                    // C++11: Set all elements of a to 0
+p=0;                    // C++11: Set all elements of a to 0
 for (vector<int>::iterator p=a.begin(); p!=a.end(); ++p)
-  *p=0;                   // C++03: Set all elements of a to 0
+*p=0;                   // C++03: Set all elements of a to 0
 vector<int> b(a.begin(), a.end());  // b is copy of a
 vector<T> c(n, x);        // c[0]..c[n-1] init to x
 T d[10]; vector<T> e(d, d+10);      // e is initialized from d
-```
 
-## `deque` (Array stack queue)
+// ## `deque` (Array stack queue)
 
-`deque<T>` is like `vector<T>`, but also supports:
+// `deque<T>` is like `vector<T>`, but also supports:
 
-```cpp
 #include <deque>          // Include deque (std namespace)
 a.push_front(x);          // Puts x at a[0], shifts elements toward back
 a.pop_front();            // Removes a[0], shifts toward front
-```
 
-## `utility` (pair)
+// ## `utility` (pair)
 
-```cpp
 #include <utility>        // Include utility (std namespace)
-pair<string, int> a("hello", 3);  // A 2-element struct
+        pair<string, int> a("hello", 3);  // A 2-element struct
 a.first;                  // "hello"
 a.second;                 // 3
-```
 
-## `map` (associative array - usually implemented as binary search trees - avg. time complexity: O(log n))
+// ## `map` (associative array - usually implemented as binary search trees - avg. time complexity: O(log n))
 
-```cpp
 #include <map>            // Include map (std namespace)
 map<string, int> a;       // Map from string to int
 a["hello"] = 3;           // Add or replace element a["hello"]
 for (auto& p:a)
     cout << p.first << p.second;  // Prints hello, 3
 a.size();                 // 1
-```
 
-## `unordered_map` (associative array - usually implemented as hash table - avg. time complexity: O(1))
+// ## `unordered_map` (associative array - usually implemented as hash table - avg. time complexity: O(1))
 
-```cpp
 #include <unordered_map>  // Include map (std namespace)
 unordered_map<string, int> a; // Map from string to int
 a["hello"] = 3;           // Add or replace element a["hello"]
 for (auto& p:a)
-    cout << p.first << p.second;  // Prints hello, 3
+cout << p.first << p.second;  // Prints hello, 3
 a.size();                 // 1
-```
 
-## `set` (store unique elements - usually implemented as binary search trees - avg. time complexity: O(log n))
+// ## `set` (store unique elements - usually implemented as binary search trees - avg. time complexity: O(log n))
 
-```cpp
 #include <set>            // Include set (std namespace)
 set<int> s;               // Set of integers
 s.insert(123);            // Add element to set
 if (s.find(123) != s.end()) // Search for an element
-    s.erase(123);
+s.erase(123);
 cout << s.size();         // Number of elements in set
-```
 
-## `unordered_set` (store unique elements - usually implemented as a hash set - avg. time complexity: O(1))
+// ## `unordered_set` (store unique elements - usually implemented as a hash set - avg. time complexity: O(1))
 
-```cpp
 #include <unordered_set>  // Include set (std namespace)
 unordered_set<int> s;     // Set of integers
 s.insert(123);            // Add element to set
 if (s.find(123) != s.end()) // Search for an element
-    s.erase(123);
+s.erase(123);
 cout << s.size();         // Number of elements in set
-```
 
-## `algorithm` (A collection of 60 algorithms on sequences with iterators)
+// ## `algorithm` (A collection of 60 algorithms on sequences with iterators)
 
-```cpp
 #include <algorithm>      // Include algorithm (std namespace)
 min(x, y); max(x, y);     // Smaller/larger of x, y (any type defining <)
 swap(x, y);               // Exchange values of variables x and y
 sort(a, a+n);             // Sort array a[0]..a[n-1] by <
 sort(a.begin(), a.end()); // Sort vector or deque
 reverse(a.begin(), a.end()); // Reverse vector or deque
-```
 
-## `chrono` (Time related library)
-```cpp
+// ## `chrono` (Time related library)
+
 #include <chrono>         // Include chrono
 using namespace std::chrono; // Use namespace
 auto from =               // Get current time_point
-  high_resolution_clock::now();
+        high_resolution_clock::now();
 // ... do some work       
 auto to =                 // Get current time_point
-  high_resolution_clock::now();
+        high_resolution_clock::now();
 using ms =                // Define ms as floating point duration
-  duration<float, milliseconds::period>;
-                          // Compute duration in milliseconds
+duration<float, milliseconds::period>;
+// Compute duration in milliseconds
 cout << duration_cast<ms>(to - from)
-  .count() << "ms";
-```
+.count() << "ms";
 
-## `thread` (Multi-threading library)
-```cpp
+// ## `thread` (Multi-threading library)
+
 #include <thread>         // Include thread
-unsigned c = 
-  hardware_concurrency(); // Hardware threads (or 0 for unknown)
+unsigned c =
+        hardware_concurrency(); // Hardware threads (or 0 for unknown)
 auto lambdaFn = [](){     // Lambda function used for thread body
     cout << "Hello multithreading";
 };
@@ -536,41 +492,39 @@ t.join();                 // Wait for t finishes
 mutex mut;                         // Mutex for synchronization
 condition_variable cond;           // Shared condition variable
 const char* sharedMes              // Shared resource
-  = nullptr;
+        = nullptr;
 auto pingPongFn =                  // thread body (lambda). Print someone else's message
-  [&](const char* mes){
-    while (true){
-      unique_lock<mutex> lock(mut);// locks the mutex 
-      do {                
-        cond.wait(lock, [&](){     // wait for condition to be true (unlocks while waiting which allows other threads to modify)        
-          return sharedMes != mes; // statement for when to continue
-        });
-      } while (sharedMes == mes);  // prevents spurious wakeup
-      cout << sharedMes << endl;
-      sharedMes = mes;       
-      lock.unlock();               // no need to have lock on notify 
-      cond.notify_all();           // notify all condition has changed
-    }
-  };
+        [&](const char* mes){
+            while (true){
+                unique_lock<mutex> lock(mut);// locks the mutex
+                do {
+                    cond.wait(lock, [&](){     // wait for condition to be true (unlocks while waiting which allows other threads to modify)
+                        return sharedMes != mes; // statement for when to continue
+                    });
+                } while (sharedMes == mes);  // prevents spurious wakeup
+                cout << sharedMes << endl;
+                sharedMes = mes;
+                lock.unlock();               // no need to have lock on notify
+                cond.notify_all();           // notify all condition has changed
+            }
+        };
 sharedMes = "ping";
 thread t1(pingPongFn, sharedMes);  // start example with 3 concurrent threads
 thread t2(pingPongFn, "pong");
 thread t3(pingPongFn, "boing");
-```
 
-## `future` (thread support library)
-```cpp
+// ## `future` (thread support library)
+
 #include <future>         // Include future
-function<int(int)> fib =  // Create lambda function
-  [&](int i){
+        function<int(int)> fib =  // Create lambda function
+[&](int i){
     if (i <= 1){
-      return 1;
+        return 1;
     }
-    return fib(i-1) 
-         + fib(i-2);
-  };
+    return fib(i-1)
+           + fib(i-2);
+};
 future<int> fut =         // result of async function
-  async(launch::async, fib, 4); // start async function in other thread
+        async(launch::async, fib, 4); // start async function in other thread
 // do some other work 
 cout << fut.get();        // get result of async function. Wait if needed.
-```
