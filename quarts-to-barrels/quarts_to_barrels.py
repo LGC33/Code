@@ -1,5 +1,7 @@
 """Utility to convert quarts into barrels and ounces."""
 
+# Author: Larry Grace
+
 # Algorithm
 # 1. Prompt the user for the number of quarts.
 # 2. Compute how many whole barrels that represents.
