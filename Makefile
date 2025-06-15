@@ -5,14 +5,13 @@ FLASK_VERSION?=2.3.1
 SRC=sammelrepository
 ENV_FILE?=$(PWD)/.env.sh
 
-
 # Create a virtual environment
 venv-create:
 	python$(PYTHON_VERSION) -m venv $(VENV_NAME)
 	pip install poetry
 	poetry install
 
-# Active virtual environment
+# Activate virtual environment
 venv-activate:
 	. $(VENV_NAME)/bin/activate
 
@@ -20,6 +19,7 @@ venv-activate:
 venv-clean:
 	rm -rf $(VENV_NAME)
 
+# Source environment variables
 source:
 	[ -f $(ENV_FILE) ] && . $(ENV_FILE) || true
 
