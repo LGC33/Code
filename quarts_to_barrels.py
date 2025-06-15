@@ -1,4 +1,11 @@
-# Convert quarts to barrels and ounces
+"""Utility to convert quarts into barrels and ounces."""
+
+# Algorithm
+# 1. Prompt the user for the number of quarts.
+# 2. Compute how many whole barrels that represents.
+# 3. Determine the remaining quarts that do not make a full barrel.
+# 4. Convert the total quarts to ounces.
+# 5. Display the results.
 
 QUARTS_PER_BARREL = 168
 OUNCES_PER_QUART = 32
