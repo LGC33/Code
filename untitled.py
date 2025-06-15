@@ -1,8 +1,10 @@
-import PyDf2
+"""Extract text from ``test.pdf`` using PyPDF2."""
 
-pdfFileObj = open('test.pdf' , 'rb')
-pdfReader = PyPDF2.PdfileReader(pdfFileObj)
-pageObj = pdfReader.getPage(0)
-data = pageObj.extractText()
-print(data)
-pdfFileObj.close()
+import PyPDF2
+
+
+with open("test.pdf", "rb") as pdf_file:
+    pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+    page_obj = pdf_reader.getPage(0)
+    data = page_obj.extractText()
+    print(data)
