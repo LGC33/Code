@@ -19,21 +19,21 @@ venv-clean:
 	rm -rf $(VENV_NAME)
 
 source:
-	source $(PWD)/.env.sh &&
+	. $(PWD)/.env.sh
 
 # Reset the database migrations and import data from the `Landesrepositories`.
 generate-tokens:
-	source $(PWD)/.env.sh && \
+	. $(PWD)/.env.sh && \
 	python -m sammelrepository generate-tokens
 
 # Reset the database migrations and import data from the `Landesrepositories`.
 reset-db:
-	source $(PWD)/.env.sh && \
+	. $(PWD)/.env.sh && \
 	python -m sammelrepository resetdb
 
 # Run the app in local environment
 run-local:
-	source $(PWD)/.env.sh && \
+	. $(PWD)/.env.sh && \
 	uvicorn sammelrepository.main:create_app --factory --reload --log-config=./config/log_conf.yaml
 
 # Clean up all compiled Python files and build artifacts
@@ -52,5 +52,5 @@ pyright:
 	poetry run pyright $(SRC)
 
 test:
-	source $(PWD)/.env.sh && \
+	. $(PWD)/.env.sh && \
 	poetry run pytest
