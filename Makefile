@@ -3,6 +3,8 @@ VENV_NAME?=.venv
 PYTHON_VERSION?=3.11
 FLASK_VERSION?=2.3.1
 SRC=sammelrepository
+ENV_FILE?=$(PWD)/.env.sh
+
 
 # Create a virtual environment
 venv-create:
@@ -19,21 +21,21 @@ venv-clean:
 	rm -rf $(VENV_NAME)
 
 source:
-	. $(PWD)/.env.sh
+	[ -f $(ENV_FILE) ] && . $(ENV_FILE)
 
 # Reset the database migrations and import data from the `Landesrepositories`.
 generate-tokens:
-	. $(PWD)/.env.sh && \
+	[ -f $(ENV_FILE) ] && . $(ENV_FILE); \
 	python -m sammelrepository generate-tokens
 
 # Reset the database migrations and import data from the `Landesrepositories`.
 reset-db:
-	. $(PWD)/.env.sh && \
+	[ -f $(ENV_FILE) ] && . $(ENV_FILE); \
 	python -m sammelrepository resetdb
 
 # Run the app in local environment
 run-local:
-	. $(PWD)/.env.sh && \
+	[ -f $(ENV_FILE) ] && . $(ENV_FILE); \
 	uvicorn sammelrepository.main:create_app --factory --reload --log-config=./config/log_conf.yaml
 
 # Clean up all compiled Python files and build artifacts
@@ -52,5 +54,5 @@ pyright:
 	poetry run pyright $(SRC)
 
 test:
-	. $(PWD)/.env.sh && \
+	[ -f $(ENV_FILE) ] && . $(ENV_FILE); \
 	poetry run pytest
