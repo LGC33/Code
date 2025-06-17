@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: configure
-      run: ./configure
+    - name: Generate configure script
+      run: autoreconf -i
 
     - name: Install dependencies
       run: make
