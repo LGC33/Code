@@ -1,5 +1,4 @@
-
-CORRECTED_MAKEFILE = """# Makefile for multi-language project
+# Makefile for multi-language project
 # Supports C, C++, Java, and Python
 
 # Directory definitions
@@ -58,13 +57,13 @@ $(BIN_DIR)/%.class: $(JAVA_DIR)/%.java
 
 # Run Python script
 run-python:
-	@if [ -z "$(FILE)" ]; then \\
-		echo "Usage: make run-python FILE=path/to/script.py"; \\
-		exit 1; \\
+	@if [ -z "$(FILE)" ]; then \
+		echo "Usage: make run-python FILE=path/to/script.py"; \
+		exit 1; \
 	fi
-	@if [ ! -f "$(FILE)" ]; then \\
-		echo "Error: File $(FILE) not found"; \\
-		exit 1; \\
+	@if [ ! -f "$(FILE)" ]; then \
+		echo "Error: File $(FILE) not found"; \
+		exit 1; \
 	fi
 	python3 "$(FILE)"
 
@@ -82,6 +81,3 @@ help:
 	@echo "  run-python - Run a Python script (usage: make run-python FILE=script.py)"
 	@echo "  clean      - Remove all build artifacts"
 	@echo "  help       - Show this help message"
-"""
-
-create_file('/home/user/workspace/Makefile', CORRECTED_MAKEFILE)
