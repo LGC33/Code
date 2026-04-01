@@ -6,7 +6,7 @@
 --------------------------------------------------------*/
 import java.util.Scanner;
 
-public class TechDriver {
+class TechDriver {
   public static void main(String[] args) {
     Scanner stdIn = new Scanner(System.in);
 
@@ -16,7 +16,7 @@ public class TechDriver {
     int	   techAge = 0;			// current tech's age
 
     String response =""; 			// Auxiliar variable to get responses
-    tech atech;					// Auxiliar tech object
+    Tech atech;					// Auxiliar tech object
 
     do {
 		System.out.print("Indicate tech's first name: ");
@@ -28,7 +28,7 @@ public class TechDriver {
 		System.out.print("Indicate tech's age: ");
 		techAge = Integer.parseInt(stdIn.nextLine());
 
-		atech = new tech(techFirstName, techLastName, techTitle, techAge);
+		atech = new Tech(techFirstName, techLastName, techTitle, techAge);
 		System.out.println(atech);
 		System.out.print("Any other tech to process (y|n)?:");
 		response = stdIn.nextLine();

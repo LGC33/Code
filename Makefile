@@ -15,9 +15,16 @@ CFLAGS=-Wall -std=c11
 CXXFLAGS=-Wall -std=c++17
 
 # Source file discovery
-C_SOURCES := $(shell find $(C_DIR) -name '*.c' 2>/dev/null)
-CPP_SOURCES := $(shell find $(CPP_DIR) -name '*.cpp' 2>/dev/null)
+C_ALL_SOURCES := $(shell find $(C_DIR) -name '*.c' 2>/dev/null)
+CPP_ALL_SOURCES := $(shell find $(CPP_DIR) -name '*.cpp' 2>/dev/null)
 JAVA_SOURCES := $(shell find $(JAVA_DIR) -name '*.java' 2>/dev/null)
+
+# Filter out Windows/MSVC-specific and non-compilable sources
+C_WIN_SOURCES := $(shell grep -rl 'windows\.h\|conio\.h\|process\.h' $(C_DIR) 2>/dev/null)
+CPP_WIN_SOURCES := $(shell grep -rl '"pch\.h"\|<windows\.h>\|<conio\.h>' $(CPP_DIR) 2>/dev/null)
+CPP_SKIP_SOURCES := $(CPP_DIR)/cheatsheet-as-sourcefile.cpp
+C_SOURCES := $(filter-out $(C_WIN_SOURCES),$(C_ALL_SOURCES))
+CPP_SOURCES := $(filter-out $(CPP_WIN_SOURCES) $(CPP_SKIP_SOURCES),$(CPP_ALL_SOURCES))
 
 # Generated targets
 C_TARGETS := $(patsubst $(C_DIR)/%.c,$(BIN_DIR)/%,$(C_SOURCES))
@@ -48,12 +55,12 @@ $(BIN_DIR)/%: $(CPP_DIR)/%.cpp
 	@echo "Compiling C++: $<"
 	$(CXX) $(CXXFLAGS) "$<" -o "$@"
 
-# Build Java programs
-build-java: $(BIN_DIR) $(JAVA_CLASSES)
-
-$(BIN_DIR)/%.class: $(JAVA_DIR)/%.java
-	@echo "Compiling Java: $<"
-	javac -d $(BIN_DIR) "$<"
+# Build Java programs (compile all together to resolve inter-class dependencies)
+build-java: $(BIN_DIR)
+	@if [ -n "$(JAVA_SOURCES)" ]; then \
+		echo "Compiling Java files..."; \
+		javac -d $(BIN_DIR) $(JAVA_SOURCES); \
+	fi
 
 # Run Python script
 run-python:

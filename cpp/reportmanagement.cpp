@@ -1,4 +1,4 @@
-p#include<iostream>
+#include<iostream>
 #include<fstream>
 #include<iomanip>
 using namespace std;
@@ -140,7 +140,7 @@ return;
 cout<<"\n\n\n\t\tDISPLAYING ALL RECORDS\n\n";
 while(inFile.read(reinterpret_cast<char *> (&stud), sizeof(student)))
 {
-st.showdata();
+stud.showdata();
 cout<<"\n\n====================================\n";
 }
 inFile.close();
@@ -204,7 +204,7 @@ stud.getdata();
     found=true;
 }
 }
-File.close();
+fl.close();
 if(found==false)
 cout<<"\n\n Record Not Found ";
 cin.ignore();

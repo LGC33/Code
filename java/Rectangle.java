@@ -5,13 +5,10 @@
 * This class represents a Rectangle.
 ************************************************************/
 
-public class Museum {
+public class Rectangle {
 
- private String officialName; // The museum name 
- private String specialty; // type of museum
- private int numberOfBuildings; //numner of buildings the musums has
- private double area; // area in sq feet
- private boolean isFinanced;// true if Museum is financed, false if not width
+  private double length;
+  private double width;
 
 //**********************************************************
 
