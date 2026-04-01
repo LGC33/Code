@@ -18,7 +18,7 @@ int main() {
 
    cout << "and up to ";
    annualMice = litterSize * yearlyLitters;
-   cout <<  << " mice, in a year." << endl;
+   cout << annualMice << " mice, in a year." << endl;
    
    return 0;
 }

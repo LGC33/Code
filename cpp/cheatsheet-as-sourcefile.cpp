@@ -17,7 +17,7 @@
 // Comment to end of line
 /* Multi-line comment */
 #include  <stdio.h>         // Insert standard header file
-#include "myfile.h"         // Insert file in current directory
+// #include "myfile.h"      // Insert file in current directory (example only)
 #define X some text         // Replace X with some text
 #define F(a,b) a+b          // Replace F(1,2) with 1+2
 #define X \

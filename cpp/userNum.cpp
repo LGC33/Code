@@ -15,8 +15,8 @@ int main() {
    cout << "Enter another integer:" << endl;
    cin  >> userNum2;
 
-   cout << userNum" + "userNum2 << "is" << (userNum + userNum2) << endl;
-   cout << userNum" * "userNum2 << "is" << (userNum * userNum2) << endl;
+   cout << userNum << " + " << userNum2 << " is " << (userNum + userNum2) << endl;
+   cout << userNum << " * " << userNum2 << " is " << (userNum * userNum2) << endl;
 
  
 

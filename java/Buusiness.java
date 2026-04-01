@@ -1,4 +1,4 @@
-public class Business
+class Business
 	{
 		private String name;  	   	        // Auxiliar Business name
 		private String stockTicker;         // Aux Business Stock Ticker

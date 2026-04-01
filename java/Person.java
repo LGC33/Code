@@ -5,7 +5,7 @@
 * This class represents a Tech.
 ************************************************************/
 
-public class Tech {
+class Tech {
 
   private String firstName;    	// Tech's first name
   private String lastName;     	// Tech's last name
